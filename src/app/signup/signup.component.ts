@@ -60,7 +60,7 @@ export class SignupComponent implements OnInit {
       `;
 
       this.http
-        .post('https://101391157-comp3133-assig2-backend.vercel.app/', {
+        .post('https://101391157-comp3133-assig2-backend.vercel.app', {
           query: mutation,
           variables: { username, email, password },
         })

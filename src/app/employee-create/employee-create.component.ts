@@ -39,7 +39,7 @@ export class EmployeeCreateComponent implements OnInit {
     if (this.createForm.valid) {
       const formValues = this.createForm.value;
       this.http
-        .post('https://101391157-comp3133-assig2-backend.vercel.app/', {
+        .post('https://101391157-comp3133-assig2-backend.vercel.app', {
           query: `
           mutation AddNewEmployee($firstName: String!, $lastName: String!, $email: String!, $gender: String!, $salary: Float!) {
             addNewEmployee(first_name: $firstName, last_name: $lastName, email: $email, gender: $gender, salary: $salary) {

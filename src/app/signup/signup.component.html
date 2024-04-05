@@ -1,0 +1,46 @@
+<div class="container">
+  <h2>User Registration</h2>
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="username">User Name <span class="errmsg">*</span></label>
+      <input
+        type="text"
+        id="username"
+        formControlName="username"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <label for="email">Email <span class="errmsg">*</span></label>
+      <input
+        type="email"
+        id="email"
+        formControlName="email"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <label for="password">Password <span class="errmsg">*</span></label>
+      <input
+        type="password"
+        id="password"
+        formControlName="password"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <label for="confirmPassword"
+        >Confirm Password <span class="errmsg">*</span></label
+      >
+      <input
+        type="password"
+        id="confirmPassword"
+        formControlName="confirmPassword"
+        class="form-control"
+      />
+    </div>
+    <div *ngIf="error" class="text-danger">{{ error }}</div>
+    <button type="submit" class="btn btn-primary button">Signup</button>
+    <a routerLink="/" class="btn btn-danger button">Cancel</a>
+  </form>
+</div>

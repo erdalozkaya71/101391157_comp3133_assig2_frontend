@@ -22,7 +22,7 @@ export class EmployeeListComponent implements OnInit {
 
   loadEmployees() {
     axios
-      .post('https://101391157-comp3133-assig2-backend.vercel.app', {
+      .post('https://101391157-comp3133-assig2-backend.vercel.app/graphql', {
         query: `
         {
           getAllEmployees {

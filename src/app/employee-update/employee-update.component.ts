@@ -59,7 +59,7 @@ export class EmployeeUpdateComponent implements OnInit {
     `;
 
     this.http
-      .post('https://101391157-comp3133-assig2-backend.vercel.app', {
+      .post('https://101391157-comp3133-assig2-backend.vercel.app/graphql', {
         query: query,
         variables: { id },
       })
@@ -106,7 +106,7 @@ export class EmployeeUpdateComponent implements OnInit {
 
       try {
         const response = await axios.post(
-          'https://101391157-comp3133-assig2-backend.vercel.app',
+          'https://101391157-comp3133-assig2-backend.vercel.app/graphql',
           {
             query: mutation,
             variables: variables,

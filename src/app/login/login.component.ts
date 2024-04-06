@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import axios from 'axios';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, CommonModule, RouterModule],
+  imports: [FormsModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
@@ -20,14 +19,15 @@ export class LoginComponent {
 
   handleLogin(): void {
     const loginQuery = `
-    query Login($password: String!, $username: String, $email: String) {
-      login(password: $password, username: $username, email: $email) {
-        user {
-          username
-          email
+      query Login($username: String!, $password: String!) {
+        login(username: $username, password: $password) {
+          token
+          user {
+            username
+            email
+          }
         }
       }
-    }
     `;
 
     axios
@@ -41,7 +41,6 @@ export class LoginComponent {
       .then((response) => {
         const loginData = response.data;
 
-        // Check if there are any GraphQL errors
         if (loginData.errors) {
           console.error('GraphQL errors:', loginData.errors);
           this.error = 'Error logging in. Please try again.';
@@ -50,8 +49,10 @@ export class LoginComponent {
 
         const authPayload = loginData.data.login;
         console.log(authPayload);
-        console.log(authPayload.user);
-        if (authPayload && authPayload.user) {
+
+        if (authPayload && authPayload.token) {
+          // Assuming the token needs to be stored for authentication in subsequent requests
+          localStorage.setItem('token', authPayload.token);
           this.router.navigate(['/employee-list']);
         } else {
           this.error = 'Invalid username or password';

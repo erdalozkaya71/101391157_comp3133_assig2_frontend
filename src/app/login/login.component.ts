@@ -48,8 +48,6 @@ export class LoginComponent {
 
         const authPayload = loginData.data.login;
         if (authPayload && authPayload.user) {
-          // Navigate to the employee list page upon successful login
-          // Note: Without a token or session, the user's logged-in state won't persist across requests
           this.router.navigate(['/employee-list']);
         } else {
           this.error = 'Invalid username or password';

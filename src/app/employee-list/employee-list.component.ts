@@ -58,7 +58,7 @@ export class EmployeeListComponent implements OnInit {
     if (window.confirm('Do you want to delete?')) {
       try {
         const response = await axios.post(
-          'https://101391157-comp3133-assig2-backend.vercel.app',
+          'https://101391157-comp3133-assig2-backend.vercel.app/graphql',
           {
             query: `
             mutation DeleteEmployeeById($id: ID!) {

@@ -45,7 +45,7 @@ export class SignupComponent implements OnInit {
         return;
       }
 
-      this.error = ''; // Clear any previous error
+      this.error = '';
 
       const mutation = `
         mutation Signup($username: String!, $email: String!, $password: String!) {

@@ -20,14 +20,14 @@ export class LoginComponent {
 
   handleLogin(): void {
     const loginQuery = `
-      query Login($username: String!, $password: String!) {
-        login(username: $username, password: $password) {
-          user {
-            username
-            email
-          }
+    query Login($password: String!, $username: String, $email: String) {
+      login(password: $password, username: $username, email: $email) {
+        user {
+          username
+          email
         }
       }
+    }
     `;
 
     axios

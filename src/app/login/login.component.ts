@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import axios from 'axios';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, CommonModule, RouterModule],
+  imports: [FormsModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
@@ -20,14 +19,15 @@ export class LoginComponent {
 
   handleLogin(): void {
     const loginQuery = `
-    query Login($password: String!, $username: String, $email: String) {
-      login(password: $password, username: $username, email: $email) {
-        user {
-          username
-          email
+      query Login($username: String!, $password: String!) {
+        login(username: $username, password: $password) {
+          token
+          user {
+            username
+            email
+          }
         }
       }
-    }
     `;
 
     axios
@@ -50,7 +50,10 @@ export class LoginComponent {
 
         const authPayload = loginData.data.login;
 
-        if (authPayload && authPayload.user) {
+        if (authPayload && authPayload.token) {
+          // Store the token and navigate to the employee list page
+          // You might want to store the token in localStorage or a similar storage solution
+          localStorage.setItem('token', authPayload.token);
           this.router.navigate(['/employee-list']);
         } else {
           this.error = 'Invalid username or password';

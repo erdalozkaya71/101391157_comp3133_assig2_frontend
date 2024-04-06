@@ -21,7 +21,6 @@ export class LoginComponent {
     const loginQuery = `
       query Login($username: String!, $password: String!) {
         login(username: $username, password: $password) {
-          token
           user {
             username
             email
@@ -48,11 +47,9 @@ export class LoginComponent {
         }
 
         const authPayload = loginData.data.login;
-        console.log(authPayload);
-
-        if (authPayload && authPayload.token) {
-          // Assuming the token needs to be stored for authentication in subsequent requests
-          localStorage.setItem('token', authPayload.token);
+        if (authPayload && authPayload.user) {
+          // Navigate to the employee list page upon successful login
+          // Note: Without a token or session, the user's logged-in state won't persist across requests
           this.router.navigate(['/employee-list']);
         } else {
           this.error = 'Invalid username or password';

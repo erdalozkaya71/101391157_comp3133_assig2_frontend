@@ -67,6 +67,7 @@ export class SignupComponent implements OnInit {
         .subscribe({
           next: (response: any) => {
             // Specify the type of the response object
+            console.log('Signup response:', response);
             if (response.data.signup.user) {
               alert('Registered successfully.');
               this.router.navigate(['/employee-list']);
